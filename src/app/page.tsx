@@ -70,14 +70,14 @@ export default function Home() {
               >
                 LinkedIn
               </Anchor>
-              <Anchor
+              {/* <Anchor
                 href="/contact"
                 className="text-base py-3 hover:text-yellow-400/80"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Github
-              </Anchor>
+              </Anchor> */}
             </div>
           </div>
           <div className="flex flex-col justify-center items-center">

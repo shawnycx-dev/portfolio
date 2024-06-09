@@ -5,7 +5,7 @@ const slugs = [
   ["home", "/"],
   ["about me", "/about"],
   ["projects", "/projects"],
-  ["contact", "/contact"],
+  // ["contact", "/contact"],
   ["resume", "/resume"],
 ];
 
