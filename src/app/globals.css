@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-hex: theme(colors.gray.950);
+  --foreground-hex: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-hex: white;
+    --foreground-hex: theme(colors.gray.950);
+  }
+}
+
+body {
+  @apply text-[var(--foreground-hex)] bg-[var(--background-hex)];
+}
+
+:target {
+  animation: highlight 2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+@keyframes highlight {
+  0%, 100% {
+    @apply bg-transparent;
+  }
+  50% {
+    @apply bg-green-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

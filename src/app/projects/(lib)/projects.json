@@ -1,0 +1,37 @@
+[
+  {
+    "project_name": "BeHive",
+    "project_description": [
+      "Behive is a creative marketplace that seamlessly connects clients and creatives for collaborative projects. Powered by the user-friendly Webflow platform, Behive offers a streamlined experience for clients to discover and engage with talented creatives.",
+      "With Webflow's intuitive design tools, creatives can showcase their portfolios and skills effectively, while clients can explore profiles and communicate directly. The integration of Webflow's project management tools and CMS capabilities enhances collaboration and ensures up-to-date information."
+    ],
+    "project_thumbnail": {
+      "src": "/images/demo-sites/behivecreators_thumbnail.webp",
+      "alt": "BeHive Creators Site Thumbnail"
+    },
+    "project_link": {
+      "href": "https://www.behivecreators.com",
+      "label": "Check out their site!"
+    },
+    "tags": [
+      "Webflow",
+      "Custom Design"
+    ]
+  },
+  {
+    "project_name": "ANTOINE ADVISOR",
+    "project_description": "Antoine Lawrence is a real estate advisor who specializes in helping clients find their dream homes. His website, Antoine Advisor, is designed to showcase his services and properties in a visually appealing way.",
+    "project_thumbnail": {
+      "src": "/images/demo-sites/antioneadvisor-thumbnail.webp",
+      "alt": "Antoine Advisor Site Thumbnail"
+    },
+    "project_link": {
+      "href": "https://www.antioneadvisor.com",
+      "label": "Check out their site!"
+    },
+    "tags": [
+      "Webflow",
+      "Custom Design"
+    ]
+  }
+]

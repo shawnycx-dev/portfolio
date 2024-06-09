@@ -1,0 +1,72 @@
+{
+  "info": {
+    "email": "shawnycx@gmail.com",
+    "resume_download_url": "/assets/resume.pdf"
+  },
+  "summary": "Highly motivated and seasoned software engineer who is obsessed with improving UX/DX for all. Passionate and dedicated in delivering high-quality results and continuously seeking opportunity for growth.",
+  "experiences": [
+    {
+      "company_name": "BigCommerce",
+      "company_url": "https://www.bigcommerce.com/",
+      "role": "Software Engineer",
+      "start_date": "June, 2021",
+      "end_date": "",
+      "location": "Austin [TX]",
+      "responsibilities": [
+        "Optimized Redis cache to reduce requests by <strong>89x</strong> which resulted in <strong>70% reduction</strong> in Redis server cost and improved overall site request latencies.",
+        "Lead developer responsible for coordinating with stakeholders to fully migrate the BigCommerce developer center to NextJS with ISR/SSR which resulted in significant <strong>cost reduction</strong>, <strong>1.5x improvements</strong> on performance metrics, and <strong>decreased build time by 2x</strong>.",
+        "Streamlined the docs deployment toolchain, reducing friction for the documentation team.",
+        "Worked on multiple interactive landing pages while coordinating with the design team for best practices to improve developer experiences."
+      ]
+    },
+    {
+      "company_name": "Texas Realtors",
+      "company_url": "https://www.texasrealestate.com/",
+      "role": "Software Engineer",
+      "start_date": "July, 2017",
+      "end_date": "May, 2021",
+      "location": "Austin [TX]",
+      "responsibilities": [
+        "Coordinated across teams to frictionlessly migrate some applications built with ColdFusion to ReactJS and REST APIs, reducing unnecessary overhead. This resulted in improved overall site performance which significantly reduced first contentful paint (FCP).",
+        "Implemented a new API for the member portal using NodeJS and Express.",
+        "Optimized frontends to efficiently render large datasets by virtualizing tables and parallel processing data per requests, achieving <strong>10x improvement</strong> on page load and improved REST APIs response time.",
+        "Worked on reducing REST APIs usage abuse by utilizing AWS gateway to handle throttling and rate limiting."
+      ]
+    },
+    {
+      "company_name": "M800 Limited",
+      "company_url": "https://www.m800.com/",
+      "role": "iOS Developer",
+      "start_date": "May, 2016",
+      "end_date": "Aug, 2016",
+      "location": "[Hong Kong]",
+      "responsibilities": [
+        "Worked on migrating legacy Objective-C modules to Swift"
+      ]
+    },
+    {
+      "company_name": "Accenture",
+      "company_url": "https://www.accenture.com/",
+      "role": "Software Engineer",
+      "start_date": "May, 2015",
+      "end_date": "Aug, 2015",
+      "location": "Kuala Lumpur [Malaysia]",
+      "responsibilities": [
+        "Worked on optimizing bulk imports that processes millions of active users daily by refactoring preprocessing scripts",
+        "Worked on manual testing with PostgreSQL and an e-commerce web application powered by Siebel CRM to ensure data integrity",
+        "Coordinated several bi-weekly UAT with clients to ensure project requirements were met."
+      ]
+    }
+  ],
+  "skills": [],
+  "educations": [
+    {
+      "school": "Abilene Christian University",
+      "degree": "Bachelor of Science (BS)",
+      "major": "Computer Science",
+      "graduation_year": "2017",
+      "university_url": "https://www.acu.edu/",
+      "location": "Abilene [TX]"
+    }
+  ]
+}
