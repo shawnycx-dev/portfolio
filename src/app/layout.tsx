@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Kode_Mono, Montserrat } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth scroll-pt-8">
+      <GoogleTagManager gtmId="G-TP13CLSN0B" />
       <body
         className={cn(
           montserrat.variable,
