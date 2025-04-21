@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Kode_Mono, Montserrat } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         <Header />
         <main className="py-20 flex-grow">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
