@@ -111,12 +111,8 @@ export default function Page() {
           >
             Skills
           </h2>
-          <p className="max-w-[80ch] leading-normal"></p>
           <ul className="font-montserrat text-gray-300 list-disc list-outside pl-5 space-y-1 [&>li]:text-pretty tracking-wide">
-            <li>NextJS</li>
-            <li>React</li>
-            <li>Redis</li>
-            <li>SQL</li>
+            {resumeData.skills.map((skill, index) => <li key={`skill-${index}_${skill}-`}>{skill}</li>)}
           </ul>
         </div>
 
