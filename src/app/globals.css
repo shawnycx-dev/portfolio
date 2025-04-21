@@ -1,8 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :target {
+    animation: highlight 2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  }
+}
+
+@theme {
+  --color-primary: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-muted: var(--foreground-muted)
+}
+
+@layer base {
+  :root {
+    --background: theme(colors.gray.950);
+
+    --foreground: white;
+    --foreground-muted: theme(colors.gray.300);
+  }
+  .dark {
+    --background: white;
+
+    --foreground: theme(colors.gray.950);
+    --foreground-muted: theme(colors.gray.600);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* :root {
   --background-hex: theme(colors.gray.950);
   --foreground-hex: white;
 }
@@ -17,22 +51,4 @@
 body {
   @apply text-[var(--foreground-hex)] bg-[var(--background-hex)];
 }
-
-:target {
-  animation: highlight 2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
-}
-
-@keyframes highlight {
-  0%, 100% {
-    @apply bg-transparent;
-  }
-  50% {
-    @apply bg-green-400;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+ */

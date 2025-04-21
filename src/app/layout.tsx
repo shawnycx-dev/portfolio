@@ -38,7 +38,7 @@ export default function RootLayout({
           montserrat.variable,
           kodeMono.variable,
           "font-kode-mono",
-          "max-w-screen-xl mx-auto py-10 px-8 min-h-screen flex flex-col"
+          "max-w-screen-xl mx-auto py-10 px-8 min-h-screen flex flex-col bg-primary text-foreground"
         )}
       >
         <Header />

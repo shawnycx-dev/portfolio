@@ -1,4 +1,5 @@
 import About from "@/components/about";
+import LinkedinIcon from "@/components/icons/linkedin";
 import Anchor from "@/components/link";
 import ProjectsList from "@/components/projects";
 import { Circle, Square } from "@/components/shapes/shape-factory";
@@ -60,24 +61,6 @@ export default function Home() {
               <Anchor href="/projects" className="text-lg font-bold px-6 py-3">
                 Check out my work
               </Anchor>
-            </div>
-            <div className="mt-4 space-x-6 text-gray-300">
-              <Anchor
-                href="https://linkedin.com/in/shawnycx"
-                className="text-base py-3 hover:text-yellow-400/80"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </Anchor>
-              {/* <Anchor
-                href="/contact"
-                className="text-base py-3 hover:text-yellow-400/80"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Github
-              </Anchor> */}
             </div>
           </div>
           <div className="flex flex-col justify-center items-center">
