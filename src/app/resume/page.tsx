@@ -178,9 +178,9 @@ export default function Page() {
             )}
           </ul>
 
-          <div className="hidden md:block py-2 space-y-2">
+          <div className="hidden md:block py-2 space-y-2 [&>a]:block">
             <Anchor
-              className="animate-pulse-slow text-green-400"
+              className="animate-pulse hover:animate-none text-green-400"
               href={resumeData.info.resume_download_url}
               download={true}
             >
