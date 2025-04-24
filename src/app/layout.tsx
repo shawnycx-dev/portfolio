@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Kode_Mono, Montserrat } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -33,7 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth scroll-pt-8">
-      <GoogleTagManager gtmId="G-TP13CLSN0B" />
+      <GoogleAnalytics gaId="G-TP13CLSN0B" />
+      <GoogleTagManager gtmId="GTM-T6ZWR85L" />
       <body
         className={cn(
           montserrat.variable,
