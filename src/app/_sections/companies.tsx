@@ -17,6 +17,7 @@ export default function CompaniesSection() {
           href="https://www.m800.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit M800's Website (opens in new tab)"
         >
           <Image
             src={M800Logo}
@@ -31,14 +32,20 @@ export default function CompaniesSection() {
           href="https://www.bigcommerce.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit BigCommerce's Website (opens in new tab)"
         >
-          <BigcommerceLogo className="w-36 h-auto text-white" />
+          <BigcommerceLogo
+            className="w-36 h-auto text-white"
+            aria-label="BigCommerce Logo"
+            role="img"
+          />
         </a>
         <a
           className="inline-block relative w-36 h-auto"
           href="https://www.texasrealestate.com/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit Texas Realtors' Website (opens in new tab)"
         >
           <Image
             src={TexasRealEstateLogo}
