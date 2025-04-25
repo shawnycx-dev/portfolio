@@ -3,15 +3,15 @@ import NavLink from "./nav-link";
 
 const slugs = [
   ["home", "/"],
-  ["about me", "/about"],
-  ["projects", "/projects"],
-  // ["contact", "/contact"],
+  ["projects", "#projects"],
+  ["about me", "#about-me"],
+  ["contact me", "/contact"],
   ["resume", "/resume"],
 ];
 
 export default function Header() {
   return (
-    <header>  
+    <header>
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-y-6">
         <div className="space-y-4">
           <Logo />
