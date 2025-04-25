@@ -57,7 +57,7 @@ export default function Home() {
               >
                 Let&apos;s get in touch!
               </Anchor>
-              <Anchor href="/projects" className="text-lg font-bold px-6 py-3 text-muted">
+              <Anchor href="#projects" className="text-lg font-bold px-6 py-3 text-muted">
                 Check out my work
               </Anchor>
             </div>
