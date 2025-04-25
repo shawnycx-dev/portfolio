@@ -1,7 +1,6 @@
 import About from "@/components/about";
-import LinkedinIcon from "@/components/icons/linkedin";
 import Anchor from "@/components/link";
-import ProjectsList from "@/components/projects";
+import ProjectsList from "@/components/projects/project-list";
 import { Circle, Square } from "@/components/shapes/shape-factory";
 import Image from "next/image";
 

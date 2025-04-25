@@ -1,8 +1,8 @@
 import Anchor from "@/components/link";
 import Image from "next/image";
-import Tag from "./tag";
+import Tag from "../tag";
 
-import projects from "../app/projects/(lib)/projects.json";
+import projects from "./data.json";
 
 const renderDesription = (description: string | string[]) => {
   return typeof description === "string" ? (
