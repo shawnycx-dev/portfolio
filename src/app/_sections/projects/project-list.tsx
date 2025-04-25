@@ -1,6 +1,7 @@
-import Anchor from "@/components/link";
 import Image from "next/image";
-import Tag from "../tag";
+
+import Anchor from "@/components/link";
+import Tag from "@/components/tag";
 
 import projects from "./data.json";
 
