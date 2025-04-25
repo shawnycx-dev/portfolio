@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 
 import { cn } from "@/utils/cn";
 import { siteConfig } from "@/site.config";
-import "./globals.css";
+import "../globals.css";
 
 const kodeMono = Kode_Mono({
   subsets: ["latin"],

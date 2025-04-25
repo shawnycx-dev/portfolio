@@ -2,8 +2,8 @@ import Image from "next/image";
 
 import { BigcommerceLogo } from "@/components/logos/bigcommerce";
 
-import M800Logo from "../../../public/images/logos/M800-logo.png";
-import TexasRealEstateLogo from "../../../public/images/logos/texas-realtors-logo.png";
+import M800Logo from "@/public/images/logos/M800-logo.png";
+import TexasRealEstateLogo from "@/public/images/logos/texas-realtors-logo.png";
 
 export default function CompaniesSection() {
   return (
