@@ -1,6 +1,7 @@
 "use server";
 
 import { insertContactForm } from "@/drizzle/queries/contact-form";
+import { sendEmail } from "@/lib/resend";
 import { z } from "zod";
 
 const schema = z.object({
@@ -33,8 +34,18 @@ export async function createNewContactForm(prevState: any, formData: FormData) {
   const { name, email, message } = parse.data;
 
   try {
-    await insertContactForm({ name, email, message });
-    return { ...prevState, message: "Message sent successfully!", zodError: null };
+    const response = await insertContactForm({ name, email, message });
+
+    if (response.length > 0) {
+      await sendEmail({
+        from: "contact-me@shawnycx.com",
+        to: ["shawnycx.dev@gmail.com"],
+        subject: `[Incoming Form Submission] ${name} has sent you a message`,
+        text: `${name} <${email}> has sent you a message saying: \n\n${message}`
+      });
+    }
+
+    return { ...prevState, message: "Message sent successfully!", zodError: null, data: { name: "", email: "", message: "" } };
   } catch (error) {
     return { ...prevState, message: "Failed to send message", zodError: null, data: { name, email, message } };
   }
