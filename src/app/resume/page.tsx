@@ -1,7 +1,15 @@
-import { cn } from "@/utils/cn";
-import resumeData from "./(lib)/resume.json";
-import Anchor from "@/components/link";
+import type { Metadata } from "next";
 import Image from "next/image";
+
+import Anchor from "@/components/link";
+import { cn } from "@/utils/cn";
+
+import resumeData from "./(lib)/resume.json";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "My resume",
+};
 
 export default function Page() {
   return (
@@ -112,7 +120,9 @@ export default function Page() {
             Skills
           </h2>
           <ul className="font-montserrat text-gray-300 list-disc list-outside pl-5 space-y-1 [&>li]:text-pretty tracking-wide">
-            {resumeData.skills.map((skill, index) => <li key={`skill-${index}_${skill}-`}>{skill}</li>)}
+            {resumeData.skills.map((skill, index) => (
+              <li key={`skill-${index}_${skill}-`}>{skill}</li>
+            ))}
           </ul>
         </div>
 

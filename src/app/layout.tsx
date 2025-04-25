@@ -22,7 +22,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.siteTitle,
+  title: {
+    template: `%s | ${siteConfig.siteTitle}`,
+    default: siteConfig.siteTitle,
+  },
   description: siteConfig.siteDescription,
 };
 
