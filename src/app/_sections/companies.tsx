@@ -32,7 +32,7 @@ export default function CompaniesSection() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <BigcommerceLogo className="w-36 text-muted h-auto text-white" />
+          <BigcommerceLogo className="w-36 h-auto text-white" />
         </a>
         <a
           className="inline-block relative w-36 h-auto"
