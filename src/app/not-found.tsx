@@ -8,8 +8,8 @@ export default function NotFound() {
           <h1 className="text-5xl font-bold text-balance text-yellow-400/90 text-center">🧭404 - Lost in the Unknown</h1>
 
           <p className="text-lg text-muted text-center">
-            Looks like you've wandered off the map, this page is uncharted territory!
-            Here's a map to help you find your way back:
+            {`Looks like you've wandered off the map, this page is uncharted territory!
+            Here's a map to help you find your way back:`}
           </p>
         </div>
 
