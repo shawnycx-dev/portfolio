@@ -27,6 +27,18 @@ export const metadata: Metadata = {
     default: siteConfig.siteTitle,
   },
   description: siteConfig.siteDescription,
+  openGraph: {
+    title: siteConfig.siteTitle,
+    description: siteConfig.siteDescription,
+    url: "https://shawnycx.com",
+    siteName: siteConfig.siteTitle,
+  },
+  twitter: {
+    card: "summary",
+    title: siteConfig.siteTitle,
+    description: siteConfig.siteDescription,
+    site: "https://shawnycx.com",
+  },
 };
 
 export default function RootLayout({
