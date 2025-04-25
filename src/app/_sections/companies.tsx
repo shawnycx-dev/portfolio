@@ -4,7 +4,7 @@ export default function CompaniesSection() {
   return (
     <section className="bg-gray-900/20 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none py-10">
       <p className="text-sm font-bold tracking-wider uppercase text-muted text-center">
-        Companies I've worked at
+        {`Companies I've worked at`}
       </p>
       <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mt-8">
         <a
