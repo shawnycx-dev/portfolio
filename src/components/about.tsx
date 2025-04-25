@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <section id="about-me" className="py-20 space-y-8">
-      <div className="space-y-4">
+      <div className="space-y-4 text-center md:text-left">
         <h2 className="text-4xl font-bold">🌟 About Me</h2>
         <p className="text-xl font-light text-balance max-w-[80ch]">
           You&apos;ve made it this far! You have got to let me tell you a little more
@@ -10,7 +10,7 @@ export default function About() {
       </div>
 
       <div className="py-8 border-y-2 border-dashed">
-        <ol className="grid grid-cols-1 md:grid-cols-2 gap-24 [&>p]:leading-relaxed list-decimal list [&>li]:ml-8 [&>li::marker]:text-yellow-400">
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-8 [&>p]:leading-relaxed list-decimal list [&>li]:ml-8 [&>li::marker]:text-yellow-400">
           <li className="[&>strong]:text-yellow-400">
             I am currently a software engineer at{" "}
             <a
