@@ -51,14 +51,14 @@ export default function Home() {
               </Anchor>{" "}
               by day and a freelance web developer by night.
             </p>
-            <div className="flex justify-center lg:justify-start gap-4">
+            <div className="flex flex-col lg:flex-row justify-center lg:justify-start gap-4">
               <Anchor
                 href="/contact"
                 className="border-2 border-dashed border-yellow-400 text-lg font-bold px-6 py-3"
               >
                 Let&apos;s get in touch!
               </Anchor>
-              <Anchor href="/projects" className="text-lg font-bold px-6 py-3">
+              <Anchor href="/projects" className="text-lg font-bold px-6 py-3 text-muted">
                 Check out my work
               </Anchor>
             </div>
