@@ -3,6 +3,8 @@ import Image from "next/image";
 import Anchor from "@/components/link";
 import { Circle, Square } from "@/components/shapes/shape-factory";
 
+import ProfileImage from "../../../public/images/avatar.jpg";
+
 export default function IntroSection() {
   return (
     <section className="relative py-20">
@@ -55,7 +57,10 @@ export default function IntroSection() {
             >
               Let&apos;s get in touch!
             </Anchor>
-            <Anchor href="#projects" className="text-lg font-bold px-6 py-3 text-muted">
+            <Anchor
+              href="#projects"
+              className="text-lg font-bold px-6 py-3 text-muted"
+            >
               Check out my work
             </Anchor>
           </div>
@@ -64,10 +69,12 @@ export default function IntroSection() {
           <div className="p-1 border-2 border-dashed rounded-full max-w-[400px]">
             <Image
               className="rounded-full object-cover"
-              src="/images/avatar.jpg"
+              src={ProfileImage}
               width={800}
               height={800}
               alt="A picture of my in black & white"
+              sizes="(max-width: 768px) 100vw, 400px"
+              placeholder="blur"
               priority={true}
             />
           </div>
