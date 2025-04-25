@@ -13,6 +13,7 @@ export default function Tag({ children, className }: TagProps) {
     <div
       className={cn(
         "rounded-xl px-2 py-1 text-sm font-semibold",
+        "bg-gray-200 text-gray-800",
         label === "webflow" && "bg-blue-200 text-blue-800",
         label === "custom design" && "bg-yellow-200 text-yellow-800",
         className
