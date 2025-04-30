@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Kode_Mono, Montserrat } from "next/font/google";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
         <main className="py-20 flex-grow">{children}</main>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
