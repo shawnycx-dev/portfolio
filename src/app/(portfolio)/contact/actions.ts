@@ -11,6 +11,23 @@ const schema = z.object({
 });
 
 export async function createNewContactForm(prevState: any, formData: FormData) {
+  const isPotentialSpam = formData.get("gysb-credentials") !== "1";
+
+  if (isPotentialSpam) {
+    console.warn("Potential spam detected");
+    // Mock a successful submission
+    return {
+      ...prevState,
+      zodError: null,
+      message: "Message sent successfully!",
+      data: {
+        name: "",
+        email: "",
+        message: "",
+      },
+    };
+  }
+
   const formObjectData = {
     name: formData.get("name"),
     email: formData.get("email"),
@@ -27,7 +44,7 @@ export async function createNewContactForm(prevState: any, formData: FormData) {
       data: {
         ...prevState.data,
         ...formObjectData,
-      }
+      },
     };
   }
 
@@ -41,12 +58,22 @@ export async function createNewContactForm(prevState: any, formData: FormData) {
         from: "contact-me@shawnycx.com",
         to: ["shawnycx.dev@gmail.com"],
         subject: `[Incoming Form Submission] ${name} has sent you a message`,
-        text: `${name} <${email}> has sent you a message saying: \n\n${message}`
+        text: `${name} <${email}> has sent you a message saying: \n\n${message}`,
       });
     }
 
-    return { ...prevState, message: "Message sent successfully!", zodError: null, data: { name: "", email: "", message: "" } };
+    return {
+      ...prevState,
+      message: "Message sent successfully!",
+      zodError: null,
+      data: { name: "", email: "", message: "" },
+    };
   } catch (error) {
-    return { ...prevState, message: "Failed to send message", zodError: null, data: { name, email, message } };
+    return {
+      ...prevState,
+      message: "Failed to send message",
+      zodError: null,
+      data: { name, email, message },
+    };
   }
 }
