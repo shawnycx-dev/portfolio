@@ -27,17 +27,28 @@
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "shawnycx-portfolio-r2",
     },
+    {
+      "binding": "R2",
+      "bucket_name": "shawnycx-portfolio",
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "shawnycx-portfolio",
+      "database_id": "a58ab330-6c48-4424-ab7b-14ec718d6f15",
+    },
   ],
   "routes": [
     {
       "pattern": "shawnycx.com",
-      "custom_domain": true
+      "custom_domain": true,
     },
     {
       "pattern": "www.shawnycx.com",
-      "custom_domain": true
-    }
+      "custom_domain": true,
+    },
   ],
   "workers_dev": true,
-  "preview_urls": true
+  "preview_urls": true,
 }

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig = {
   images: {
@@ -13,7 +14,7 @@ const nextConfig = {
   },
 } satisfies NextConfig;
 
-export default nextConfig;
+export default withPayload(nextConfig, { devBundleServerPackages: false });
 
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 initOpenNextCloudflareForDev();
