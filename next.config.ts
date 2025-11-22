@@ -12,7 +12,7 @@ const nextConfig = {
       },
     ],
   },
-  serverExternalPackages: ["jose"],
+  serverExternalPackages: ["jose", "pino", "pino-pretty", "thread-stream"],
 } satisfies NextConfig;
 
 export default withPayload(nextConfig, { devBundleServerPackages: false });
