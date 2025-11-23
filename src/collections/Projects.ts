@@ -3,8 +3,16 @@ import type { CollectionConfig } from "payload";
 export const Projects: CollectionConfig = {
   slug: "projects",
   access: {
-    read() {
-      return true;
+    read({ req: { user } }) {
+      // Logged in users can see all projects
+      if (user) return true;
+
+      // If not logged in, only show published projects
+      return {
+        _status: {
+          equals: "published",
+        },
+      };
     },
   },
   fields: [
@@ -16,12 +24,13 @@ export const Projects: CollectionConfig = {
     {
       name: "project_description",
       type: "richText",
+      required: true,
     },
     {
       name: "project_thumbnail",
       type: "upload",
       relationTo: "media",
-      required: false
+      required: true,
     },
     {
       name: "project_cta_label",
@@ -30,6 +39,7 @@ export const Projects: CollectionConfig = {
     {
       name: "project_cta_link",
       type: "text",
+      required: true,
     },
     {
       name: "tags",

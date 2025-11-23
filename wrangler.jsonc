@@ -37,6 +37,7 @@
       "binding": "D1",
       "database_name": "shawnycx-portfolio",
       "database_id": "ee959b32-f299-40ee-ae1a-4548ea9a1113",
+      "remote": true
     },
   ],
   "routes": [
