@@ -1,54 +1,69 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"main": ".open-next/worker.js",
-	"name": "shawnycx-portfolio",
-	"compatibility_date": "2025-08-15",
-	"compatibility_flags": [
-		// Enable Node.js API
-		// see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
-		"nodejs_compat",
-		// Allow to fetch URLs in your app
-		// see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
-		"global_fetch_strictly_public",
-	],
-	"assets": {
-		"directory": ".open-next/assets",
-		"binding": "ASSETS",
-	},
-	"services": [
-		{
-			"binding": "WORKER_SELF_REFERENCE",
-			"service": "shawnycx-portfolio",
-		},
-	],
-	"r2_buckets": [
-		// Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
-		{
-			"binding": "NEXT_INC_CACHE_R2_BUCKET",
-			"bucket_name": "shawnycx-portfolio-r2",
-		},
-		{
-			"binding": "R2",
-			"bucket_name": "shawnycx-portfolio",
-		},
-	],
-	"d1_databases": [
-		{
-			"binding": "D1",
-			"database_name": "shawnycx-portfolio",
-			"database_id": "ee959b32-f299-40ee-ae1a-4548ea9a1113"
-		},
-	],
-	"routes": [
-		{
-			"pattern": "shawnycx.com",
-			"custom_domain": true,
-		},
-		{
-			"pattern": "www.shawnycx.com",
-			"custom_domain": true,
-		},
-	],
-	"workers_dev": true,
-	"preview_urls": true,
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "shawnycx-portfolio",
+  "compatibility_date": "2025-08-15",
+  "compatibility_flags": [
+    // Enable Node.js API
+    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
+    "nodejs_compat",
+    // Allow to fetch URLs in your app
+    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
+    "global_fetch_strictly_public",
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "shawnycx-portfolio",
+    },
+  ],
+  "r2_buckets": [
+    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "shawnycx-portfolio-r2",
+    },
+    {
+      "binding": "R2",
+      "bucket_name": "shawnycx-portfolio",
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "shawnycx-portfolio",
+      "database_id": "ee959b32-f299-40ee-ae1a-4548ea9a1113",
+    },
+  ],
+  "routes": [
+    {
+      "pattern": "shawnycx.com",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.shawnycx.com",
+      "custom_domain": true,
+    },
+  ],
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true,
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1,
+    },
+  },
+  "workers_dev": true,
+  "preview_urls": true,
 }
