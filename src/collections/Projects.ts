@@ -15,6 +15,9 @@ export const Projects: CollectionConfig = {
       };
     },
   },
+  admin:{
+    useAsTitle: "project_name",
+  },
   fields: [
     {
       name: "project_name",

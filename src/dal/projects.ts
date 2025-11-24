@@ -7,8 +7,7 @@ export const getProjects = async () => {
       project_name: true,
       project_description: true,
       project_thumbnail: true,
-      project_cta_label: true,
-      project_cta_link: true,
+      Link: true,
       createdAt: true,
       tags: true,
     }

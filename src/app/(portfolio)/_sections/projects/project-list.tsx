@@ -51,19 +51,19 @@ export default async function ProjectsList() {
 
               <div className="space-y-6">
                 <div className="flex gap-2">
-                  {project.tags?.map( ( tag, index ) => (
-                    <Tag key={`project-itemTag__${tag.id}--${index}`}>{tag.tag_name}</Tag>
+                  {project.tags?.map( ( tag, index ) => typeof tag !== "number" && (
+                    <Tag key={`project-itemTag__${tag.id}--${index}`}>{tag.technology_name}</Tag>
                   ) )}
                 </div>
                 <h3 className="text-5xl font-bold">{project.project_name}</h3>
-                {project.project_description && <RichText data={project.project_description} />}
-                {project?.project_cta_link && ( <Anchor
-                  href={project.project_cta_link}
+                {project.project_description && <RichText className="font-light text-lg text-gray-300" data={project.project_description} />}
+                {project?.Link && ( <Anchor
+                  href={project.Link.href}
                   className="inline-block py-1 border-b-2 border-dashed  hover:border-yellow-400"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {project.project_cta_label}
+                  {project.Link.label}
                 </Anchor> )}
               </div>
             </div>
