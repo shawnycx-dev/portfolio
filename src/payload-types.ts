@@ -70,6 +70,9 @@ export interface Config {
     users: User;
     media: Media;
     projects: Project;
+    resume: Resume;
+    companies: Company;
+    technologies: Technology;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +83,9 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    resume: ResumeSelect<false> | ResumeSelect<true>;
+    companies: CompaniesSelect<false> | CompaniesSelect<true>;
+    technologies: TechnologiesSelect<false> | TechnologiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -167,7 +173,7 @@ export interface Media {
 export interface Project {
   id: number;
   project_name: string;
-  project_description?: {
+  project_description: {
     root: {
       type: string;
       children: {
@@ -181,16 +187,48 @@ export interface Project {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
+  };
   project_thumbnail?: (number | null) | Media;
-  project_cta_label?: string | null;
-  project_cta_link?: string | null;
-  tags?:
-    | {
-        tag_name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  Link: {
+    label: string;
+    href: string;
+  };
+  tags?: (number | Technology)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "technologies".
+ */
+export interface Technology {
+  id: number;
+  technology_name: string;
+  technology_color?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resume".
+ */
+export interface Resume {
+  id: number;
+  title: string;
+  file: number | Media;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  company_name: string;
+  company_logo: number | Media;
+  company_website?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -229,6 +267,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'resume';
+        value: number | Resume;
+      } | null)
+    | ({
+        relationTo: 'companies';
+        value: number | Company;
+      } | null)
+    | ({
+        relationTo: 'technologies';
+        value: number | Technology;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -320,14 +370,45 @@ export interface ProjectsSelect<T extends boolean = true> {
   project_name?: T;
   project_description?: T;
   project_thumbnail?: T;
-  project_cta_label?: T;
-  project_cta_link?: T;
-  tags?:
+  Link?:
     | T
     | {
-        tag_name?: T;
-        id?: T;
+        label?: T;
+        href?: T;
       };
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resume_select".
+ */
+export interface ResumeSelect<T extends boolean = true> {
+  title?: T;
+  file?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies_select".
+ */
+export interface CompaniesSelect<T extends boolean = true> {
+  company_name?: T;
+  company_logo?: T;
+  company_website?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "technologies_select".
+ */
+export interface TechnologiesSelect<T extends boolean = true> {
+  technology_name?: T;
+  technology_color?: T;
   updatedAt?: T;
   createdAt?: T;
 }

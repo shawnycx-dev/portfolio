@@ -3,9 +3,9 @@ import type { CollectionConfig } from "payload";
 export const Projects: CollectionConfig = {
   slug: "projects",
   access: {
-    read({ req: { user } }) {
+    read( { req: { user } } ) {
       // Logged in users can see all projects
-      if (user) return true;
+      if ( user ) return true;
 
       // If not logged in, only show published projects
       return {
@@ -30,26 +30,28 @@ export const Projects: CollectionConfig = {
       name: "project_thumbnail",
       type: "upload",
       relationTo: "media",
-      required: true,
     },
     {
-      name: "project_cta_label",
-      type: "text",
-    },
-    {
-      name: "project_cta_link",
-      type: "text",
-      required: true,
+      name: "Link",
+      type: "group",
+      fields: [{
+        name: "label",
+        type: "text",
+        required: true,
+      }, {
+        name: "href",
+        type: "text",
+        required: true,
+        validate: ( value: any ) => {
+          return ( value.startsWith( 'http://' ) || value.startsWith( 'https://' ) ) || 'Link must start with http:// or https://';
+        },
+      }],
     },
     {
       name: "tags",
-      type: "array",
-      fields: [
-        {
-          name: "tag_name",
-          type: "text",
-        },
-      ],
-    },
+      type: "relationship",
+      relationTo: "technologies",
+      hasMany: true,
+    }
   ],
 };

@@ -99,39 +99,22 @@ export const media = sqliteTable(
   ],
 );
 
-export const projects_tags = sqliteTable(
-  "projects_tags",
-  {
-    _order: integer("_order").notNull(),
-    _parentID: integer("_parent_id").notNull(),
-    id: text("id").primaryKey(),
-    tag_name: text("tag_name"),
-  },
-  (columns) => [
-    index("projects_tags_order_idx").on(columns._order),
-    index("projects_tags_parent_id_idx").on(columns._parentID),
-    foreignKey({
-      columns: [columns["_parentID"]],
-      foreignColumns: [projects.id],
-      name: "projects_tags_parent_id_fk",
-    }).onDelete("cascade"),
-  ],
-);
-
 export const projects = sqliteTable(
   "projects",
   {
     id: integer("id").primaryKey(),
     project_name: text("project_name").notNull(),
-    project_description: text("project_description", { mode: "json" }),
+    project_description: text("project_description", {
+      mode: "json",
+    }).notNull(),
     project_thumbnail: integer("project_thumbnail_id").references(
       () => media.id,
       {
         onDelete: "set null",
       },
     ),
-    project_cta_label: text("project_cta_label"),
-    project_cta_link: text("project_cta_link"),
+    Link_label: text("link_label").notNull(),
+    Link_href: text("link_href").notNull(),
     updatedAt: text("updated_at")
       .notNull()
       .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
@@ -143,6 +126,145 @@ export const projects = sqliteTable(
     index("projects_project_thumbnail_idx").on(columns.project_thumbnail),
     index("projects_updated_at_idx").on(columns.updatedAt),
     index("projects_created_at_idx").on(columns.createdAt),
+  ],
+);
+
+export const projects_rels = sqliteTable(
+  "projects_rels",
+  {
+    id: integer("id").primaryKey(),
+    order: integer("order"),
+    parent: integer("parent_id").notNull(),
+    path: text("path").notNull(),
+    technologiesID: integer("technologies_id"),
+  },
+  (columns) => [
+    index("projects_rels_order_idx").on(columns.order),
+    index("projects_rels_parent_idx").on(columns.parent),
+    index("projects_rels_path_idx").on(columns.path),
+    index("projects_rels_technologies_id_idx").on(columns.technologiesID),
+    foreignKey({
+      columns: [columns["parent"]],
+      foreignColumns: [projects.id],
+      name: "projects_rels_parent_fk",
+    }).onDelete("cascade"),
+    foreignKey({
+      columns: [columns["technologiesID"]],
+      foreignColumns: [technologies.id],
+      name: "projects_rels_technologies_fk",
+    }).onDelete("cascade"),
+  ],
+);
+
+export const resume = sqliteTable(
+  "resume",
+  {
+    id: integer("id").primaryKey(),
+    title: text("title"),
+    file: integer("file_id").references(() => media.id, {
+      onDelete: "set null",
+    }),
+    updatedAt: text("updated_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text("created_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    _status: text("_status", { enum: ["draft", "published"] }).default("draft"),
+  },
+  (columns) => [
+    index("resume_file_idx").on(columns.file),
+    index("resume_updated_at_idx").on(columns.updatedAt),
+    index("resume_created_at_idx").on(columns.createdAt),
+    index("resume__status_idx").on(columns._status),
+  ],
+);
+
+export const _resume_v = sqliteTable(
+  "_resume_v",
+  {
+    id: integer("id").primaryKey(),
+    parent: integer("parent_id").references(() => resume.id, {
+      onDelete: "set null",
+    }),
+    version_title: text("version_title"),
+    version_file: integer("version_file_id").references(() => media.id, {
+      onDelete: "set null",
+    }),
+    version_updatedAt: text("version_updated_at").default(
+      sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
+    ),
+    version_createdAt: text("version_created_at").default(
+      sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
+    ),
+    version__status: text("version__status", {
+      enum: ["draft", "published"],
+    }).default("draft"),
+    createdAt: text("created_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    updatedAt: text("updated_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    latest: integer("latest", { mode: "boolean" }),
+  },
+  (columns) => [
+    index("_resume_v_parent_idx").on(columns.parent),
+    index("_resume_v_version_version_file_idx").on(columns.version_file),
+    index("_resume_v_version_version_updated_at_idx").on(
+      columns.version_updatedAt,
+    ),
+    index("_resume_v_version_version_created_at_idx").on(
+      columns.version_createdAt,
+    ),
+    index("_resume_v_version_version__status_idx").on(columns.version__status),
+    index("_resume_v_created_at_idx").on(columns.createdAt),
+    index("_resume_v_updated_at_idx").on(columns.updatedAt),
+    index("_resume_v_latest_idx").on(columns.latest),
+  ],
+);
+
+export const companies = sqliteTable(
+  "companies",
+  {
+    id: integer("id").primaryKey(),
+    company_name: text("company_name").notNull(),
+    company_logo: integer("company_logo_id")
+      .notNull()
+      .references(() => media.id, {
+        onDelete: "set null",
+      }),
+    company_website: text("company_website"),
+    updatedAt: text("updated_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text("created_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+  },
+  (columns) => [
+    index("companies_company_logo_idx").on(columns.company_logo),
+    index("companies_updated_at_idx").on(columns.updatedAt),
+    index("companies_created_at_idx").on(columns.createdAt),
+  ],
+);
+
+export const technologies = sqliteTable(
+  "technologies",
+  {
+    id: integer("id").primaryKey(),
+    technology_name: text("technology_name").notNull(),
+    technology_color: text("technology_color"),
+    updatedAt: text("updated_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text("created_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+  },
+  (columns) => [
+    index("technologies_updated_at_idx").on(columns.updatedAt),
+    index("technologies_created_at_idx").on(columns.createdAt),
   ],
 );
 
@@ -185,6 +307,9 @@ export const payload_locked_documents_rels = sqliteTable(
     usersID: integer("users_id"),
     mediaID: integer("media_id"),
     projectsID: integer("projects_id"),
+    resumeID: integer("resume_id"),
+    companiesID: integer("companies_id"),
+    technologiesID: integer("technologies_id"),
   },
   (columns) => [
     index("payload_locked_documents_rels_order_idx").on(columns.order),
@@ -194,6 +319,13 @@ export const payload_locked_documents_rels = sqliteTable(
     index("payload_locked_documents_rels_media_id_idx").on(columns.mediaID),
     index("payload_locked_documents_rels_projects_id_idx").on(
       columns.projectsID,
+    ),
+    index("payload_locked_documents_rels_resume_id_idx").on(columns.resumeID),
+    index("payload_locked_documents_rels_companies_id_idx").on(
+      columns.companiesID,
+    ),
+    index("payload_locked_documents_rels_technologies_id_idx").on(
+      columns.technologiesID,
     ),
     foreignKey({
       columns: [columns["parent"]],
@@ -214,6 +346,21 @@ export const payload_locked_documents_rels = sqliteTable(
       columns: [columns["projectsID"]],
       foreignColumns: [projects.id],
       name: "payload_locked_documents_rels_projects_fk",
+    }).onDelete("cascade"),
+    foreignKey({
+      columns: [columns["resumeID"]],
+      foreignColumns: [resume.id],
+      name: "payload_locked_documents_rels_resume_fk",
+    }).onDelete("cascade"),
+    foreignKey({
+      columns: [columns["companiesID"]],
+      foreignColumns: [companies.id],
+      name: "payload_locked_documents_rels_companies_fk",
+    }).onDelete("cascade"),
+    foreignKey({
+      columns: [columns["technologiesID"]],
+      foreignColumns: [technologies.id],
+      name: "payload_locked_documents_rels_technologies_fk",
     }).onDelete("cascade"),
   ],
 );
@@ -300,11 +447,16 @@ export const relations_users = relations(users, ({ many }) => ({
   }),
 }));
 export const relations_media = relations(media, () => ({}));
-export const relations_projects_tags = relations(projects_tags, ({ one }) => ({
-  _parentID: one(projects, {
-    fields: [projects_tags._parentID],
+export const relations_projects_rels = relations(projects_rels, ({ one }) => ({
+  parent: one(projects, {
+    fields: [projects_rels.parent],
     references: [projects.id],
-    relationName: "tags",
+    relationName: "_rels",
+  }),
+  technologiesID: one(technologies, {
+    fields: [projects_rels.technologiesID],
+    references: [technologies.id],
+    relationName: "technologies",
   }),
 }));
 export const relations_projects = relations(projects, ({ one, many }) => ({
@@ -313,10 +465,37 @@ export const relations_projects = relations(projects, ({ one, many }) => ({
     references: [media.id],
     relationName: "project_thumbnail",
   }),
-  tags: many(projects_tags, {
-    relationName: "tags",
+  _rels: many(projects_rels, {
+    relationName: "_rels",
   }),
 }));
+export const relations_resume = relations(resume, ({ one }) => ({
+  file: one(media, {
+    fields: [resume.file],
+    references: [media.id],
+    relationName: "file",
+  }),
+}));
+export const relations__resume_v = relations(_resume_v, ({ one }) => ({
+  parent: one(resume, {
+    fields: [_resume_v.parent],
+    references: [resume.id],
+    relationName: "parent",
+  }),
+  version_file: one(media, {
+    fields: [_resume_v.version_file],
+    references: [media.id],
+    relationName: "version_file",
+  }),
+}));
+export const relations_companies = relations(companies, ({ one }) => ({
+  company_logo: one(media, {
+    fields: [companies.company_logo],
+    references: [media.id],
+    relationName: "company_logo",
+  }),
+}));
+export const relations_technologies = relations(technologies, () => ({}));
 export const relations_payload_kv = relations(payload_kv, () => ({}));
 export const relations_payload_locked_documents_rels = relations(
   payload_locked_documents_rels,
@@ -340,6 +519,21 @@ export const relations_payload_locked_documents_rels = relations(
       fields: [payload_locked_documents_rels.projectsID],
       references: [projects.id],
       relationName: "projects",
+    }),
+    resumeID: one(resume, {
+      fields: [payload_locked_documents_rels.resumeID],
+      references: [resume.id],
+      relationName: "resume",
+    }),
+    companiesID: one(companies, {
+      fields: [payload_locked_documents_rels.companiesID],
+      references: [companies.id],
+      relationName: "companies",
+    }),
+    technologiesID: one(technologies, {
+      fields: [payload_locked_documents_rels.technologiesID],
+      references: [technologies.id],
+      relationName: "technologies",
     }),
   }),
 );
@@ -383,8 +577,12 @@ type DatabaseSchema = {
   users_sessions: typeof users_sessions;
   users: typeof users;
   media: typeof media;
-  projects_tags: typeof projects_tags;
   projects: typeof projects;
+  projects_rels: typeof projects_rels;
+  resume: typeof resume;
+  _resume_v: typeof _resume_v;
+  companies: typeof companies;
+  technologies: typeof technologies;
   payload_kv: typeof payload_kv;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
@@ -394,8 +592,12 @@ type DatabaseSchema = {
   relations_users_sessions: typeof relations_users_sessions;
   relations_users: typeof relations_users;
   relations_media: typeof relations_media;
-  relations_projects_tags: typeof relations_projects_tags;
+  relations_projects_rels: typeof relations_projects_rels;
   relations_projects: typeof relations_projects;
+  relations_resume: typeof relations_resume;
+  relations__resume_v: typeof relations__resume_v;
+  relations_companies: typeof relations_companies;
+  relations_technologies: typeof relations_technologies;
   relations_payload_kv: typeof relations_payload_kv;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
