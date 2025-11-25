@@ -28,7 +28,7 @@ export default async function ProjectsList() {
                     {project?.project_thumbnail && typeof project.project_thumbnail !== "number" && (
                       <Image
                         className="object-cover w-full h-full rounded-md transition-all"
-                        src={project.project_thumbnail.url!}
+                        src={`${process.env.NEXT_PUBLIC_HOSTNAME!}${project.project_thumbnail.url!}`}
                         width={600}
                         height={400}
                         alt={project.project_thumbnail.alt!}
