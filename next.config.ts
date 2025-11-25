@@ -24,6 +24,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "shawnycx.com",
         pathname: "/api/media/file/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/api/media/file/**",
       }
     ],
   },
