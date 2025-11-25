@@ -17,7 +17,6 @@ export default async function ProjectsList() {
       </div>
       <div className="space-y-20">
         {_projects?.map( ( project, index ) => {
-          console.log( project );
           return (
             <div
               key={`project-item-${project.id}--${index}`}
