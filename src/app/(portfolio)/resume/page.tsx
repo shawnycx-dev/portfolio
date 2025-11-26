@@ -5,13 +5,18 @@ import Anchor from "@/components/link";
 import { cn } from "@/utils/cn";
 
 import resumeData from "./(lib)/resume.json";
+import { getResumeFile } from "@/dal/resume";
 
 export const metadata: Metadata = {
   title: "Resume",
   description: "My resume",
 };
 
-export default function Page() {
+export default async function Page() {
+  const resumeFile = await getResumeFile();
+
+  console.log(resumeFile);
+
   return (
     <section className="relative flex flex-col-reverse md:flex-row py-8 overflow-visible">
       <div className="space-y-10 max-w-[80ch]">
@@ -28,13 +33,16 @@ export default function Page() {
           </div>
           <div className="space-y-2">
             <p className="text-xl">{resumeData.info.email}</p>
-            <Anchor
-              className="inline-block border-2 border-dashed border-green-400 tracking-wide px-6 py-2"
-              href={resumeData.info.resume_download_url}
-              download={true}
-            >
-              Download resume
-            </Anchor>
+            {resumeFile.file && typeof resumeFile.file !== "number" && (
+              <Anchor
+                className="inline-block border-2 border-dashed border-green-400 tracking-wide px-6 py-2"
+                href={`${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`}
+                download={true}
+                title={resumeFile.title}
+              >
+                Download resume
+              </Anchor>
+            )}
           </div>
         </div>
         <div className="space-y-2">
@@ -189,13 +197,16 @@ export default function Page() {
           </ul>
 
           <div className="hidden md:block py-2 space-y-2 [&>a]:block">
-            <Anchor
-              className="animate-pulse hover:animate-none text-green-400"
-              href={resumeData.info.resume_download_url}
-              download={true}
-            >
-              Download Resume
-            </Anchor>
+            {resumeFile.file && typeof resumeFile.file !== "number" && (
+              <Anchor
+                className="animate-pulse hover:animate-none text-green-400"
+                href={`${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`}
+                download={true}
+                title={resumeFile.title}
+              >
+                Download Resume
+              </Anchor>
+            )}
             <Anchor href="#top" className="block text-sm">
               Back to top
             </Anchor>
