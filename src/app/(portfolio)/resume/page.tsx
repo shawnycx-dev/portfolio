@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 export default async function Page() {
   const resumeFile = await getResumeFile();
 
-  console.log(resumeFile);
+  const resumeDownloadUrl =
+    resumeFile.file && typeof resumeFile.file !== "number"
+      ? `${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`
+      : resumeData.info.resume_download_url;
 
   return (
     <section className="relative flex flex-col-reverse md:flex-row py-8 overflow-visible">
@@ -36,9 +39,9 @@ export default async function Page() {
             {resumeFile.file && typeof resumeFile.file !== "number" && (
               <Anchor
                 className="inline-block border-2 border-dashed border-green-400 tracking-wide px-6 py-2"
-                href={`${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`}
+                href={resumeDownloadUrl}
                 download={true}
-                title={resumeFile.title}
+                title={resumeFile.title || "Resume"}
               >
                 Download resume
               </Anchor>
@@ -200,9 +203,9 @@ export default async function Page() {
             {resumeFile.file && typeof resumeFile.file !== "number" && (
               <Anchor
                 className="animate-pulse hover:animate-none text-green-400"
-                href={`${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`}
+                href={resumeDownloadUrl}
                 download={true}
-                title={resumeFile.title}
+                title={resumeFile.title || "Resume"}
               >
                 Download Resume
               </Anchor>
