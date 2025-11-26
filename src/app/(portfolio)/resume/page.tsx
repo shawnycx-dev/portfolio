@@ -16,7 +16,7 @@ export default async function Page() {
   const resumeFile = await getResumeFile();
 
   const resumeDownloadUrl =
-    resumeFile.file && typeof resumeFile.file !== "number"
+    resumeFile?.file && typeof resumeFile?.file !== "number"
       ? `${process.env.NEXT_PUBLIC_HOSTNAME!}${resumeFile.file.url!}`
       : resumeData.info.resume_download_url;
 
@@ -36,7 +36,7 @@ export default async function Page() {
           </div>
           <div className="space-y-2">
             <p className="text-xl">{resumeData.info.email}</p>
-            {resumeFile.file && typeof resumeFile.file !== "number" && (
+            {resumeFile?.file && typeof resumeFile?.file !== "number" && (
               <Anchor
                 className="inline-block border-2 border-dashed border-green-400 tracking-wide px-6 py-2"
                 href={resumeDownloadUrl}
@@ -200,7 +200,7 @@ export default async function Page() {
           </ul>
 
           <div className="hidden md:block py-2 space-y-2 [&>a]:block">
-            {resumeFile.file && typeof resumeFile.file !== "number" && (
+            {resumeFile?.file && typeof resumeFile?.file !== "number" && (
               <Anchor
                 className="animate-pulse hover:animate-none text-green-400"
                 href={resumeDownloadUrl}
