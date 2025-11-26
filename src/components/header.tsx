@@ -3,8 +3,8 @@ import NavLink from "./nav-link";
 
 const slugs = [
   ["home", "/"],
-  ["projects", "#projects"],
-  ["about me", "#about-me"],
+  ["projects", "/#projects"],
+  ["about me", "/#about-me"],
   ["contact me", "/contact"],
   ["resume", "/resume"],
 ];
