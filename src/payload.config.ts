@@ -17,6 +17,8 @@ import { Projects } from "./collections/Projects";
 import { Resume } from "./collections/Resume";
 import { Companies } from "./collections/Companies";
 import { Technologies } from "./collections/Technologies";
+import { Contact } from "@/collections/Contact";
+// import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 
 const filename = fileURLToPath( import.meta.url );
 const dirname = path.dirname( filename );
@@ -35,7 +37,7 @@ export default buildConfig( {
       baseDir: path.resolve( dirname ),
     },
   },
-  collections: [Users, Media, Projects, Resume, Companies, Technologies],
+  collections: [Users, Media, Projects, Resume, Companies, Technologies, Contact],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -51,6 +53,18 @@ export default buildConfig( {
       collections: { media: true },
     } ),
   ],
+  // email: nodemailerAdapter({
+  //   defaultFromAddress: "",
+  //   defaultFromName: "",
+  //   transportOptions: {
+  //     host: process.env.SMTP_HOST!,
+  //     port: process.env.SMTP_PORT!,
+  //     auth: {
+  //       user: process.env.SMTP_USER!,
+  //       pass: process.env.SMTP_PASSWORD!,
+  //     },
+  //   }
+  // })
 } );
 
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
