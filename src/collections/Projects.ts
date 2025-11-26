@@ -1,11 +1,12 @@
+import { revalidateTag } from "next/cache";
 import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
   slug: "projects",
   access: {
-    read( { req: { user } } ) {
+    read({ req: { user } }) {
       // Logged in users can see all projects
-      if ( user ) return true;
+      if (user) return true;
 
       // If not logged in, only show published projects
       return {
@@ -15,7 +16,7 @@ export const Projects: CollectionConfig = {
       };
     },
   },
-  admin:{
+  admin: {
     useAsTitle: "project_name",
   },
   fields: [
@@ -37,24 +38,39 @@ export const Projects: CollectionConfig = {
     {
       name: "Link",
       type: "group",
-      fields: [{
-        name: "label",
-        type: "text",
-        required: true,
-      }, {
-        name: "href",
-        type: "text",
-        required: true,
-        validate: ( value: any ) => {
-          return ( value.startsWith( 'http://' ) || value.startsWith( 'https://' ) ) || 'Link must start with http:// or https://';
+      fields: [
+        {
+          name: "label",
+          type: "text",
+          required: true,
         },
-      }],
+        {
+          name: "href",
+          type: "text",
+          required: true,
+          validate: (value: any) => {
+            return (
+              value.startsWith("http://") ||
+              value.startsWith("https://") ||
+              "Link must start with http:// or https://"
+            );
+          },
+        },
+      ],
     },
     {
       name: "tags",
       type: "relationship",
       relationTo: "technologies",
       hasMany: true,
-    }
+    },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        revalidateTag("projects", "max");
+        return doc;
+      },
+    ],
+  },
 };
