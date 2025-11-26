@@ -268,6 +268,26 @@ export const technologies = sqliteTable(
   ],
 );
 
+export const contact = sqliteTable(
+  "contact",
+  {
+    id: integer("id").primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    message: text("message"),
+    updatedAt: text("updated_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text("created_at")
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+  },
+  (columns) => [
+    index("contact_updated_at_idx").on(columns.updatedAt),
+    index("contact_created_at_idx").on(columns.createdAt),
+  ],
+);
+
 export const payload_kv = sqliteTable(
   "payload_kv",
   {
@@ -310,6 +330,7 @@ export const payload_locked_documents_rels = sqliteTable(
     resumeID: integer("resume_id"),
     companiesID: integer("companies_id"),
     technologiesID: integer("technologies_id"),
+    contactID: integer("contact_id"),
   },
   (columns) => [
     index("payload_locked_documents_rels_order_idx").on(columns.order),
@@ -327,6 +348,7 @@ export const payload_locked_documents_rels = sqliteTable(
     index("payload_locked_documents_rels_technologies_id_idx").on(
       columns.technologiesID,
     ),
+    index("payload_locked_documents_rels_contact_id_idx").on(columns.contactID),
     foreignKey({
       columns: [columns["parent"]],
       foreignColumns: [payload_locked_documents.id],
@@ -361,6 +383,11 @@ export const payload_locked_documents_rels = sqliteTable(
       columns: [columns["technologiesID"]],
       foreignColumns: [technologies.id],
       name: "payload_locked_documents_rels_technologies_fk",
+    }).onDelete("cascade"),
+    foreignKey({
+      columns: [columns["contactID"]],
+      foreignColumns: [contact.id],
+      name: "payload_locked_documents_rels_contact_fk",
     }).onDelete("cascade"),
   ],
 );
@@ -496,6 +523,7 @@ export const relations_companies = relations(companies, ({ one }) => ({
   }),
 }));
 export const relations_technologies = relations(technologies, () => ({}));
+export const relations_contact = relations(contact, () => ({}));
 export const relations_payload_kv = relations(payload_kv, () => ({}));
 export const relations_payload_locked_documents_rels = relations(
   payload_locked_documents_rels,
@@ -534,6 +562,11 @@ export const relations_payload_locked_documents_rels = relations(
       fields: [payload_locked_documents_rels.technologiesID],
       references: [technologies.id],
       relationName: "technologies",
+    }),
+    contactID: one(contact, {
+      fields: [payload_locked_documents_rels.contactID],
+      references: [contact.id],
+      relationName: "contact",
     }),
   }),
 );
@@ -583,6 +616,7 @@ type DatabaseSchema = {
   _resume_v: typeof _resume_v;
   companies: typeof companies;
   technologies: typeof technologies;
+  contact: typeof contact;
   payload_kv: typeof payload_kv;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
@@ -598,6 +632,7 @@ type DatabaseSchema = {
   relations__resume_v: typeof relations__resume_v;
   relations_companies: typeof relations_companies;
   relations_technologies: typeof relations_technologies;
+  relations_contact: typeof relations_contact;
   relations_payload_kv: typeof relations_payload_kv;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
