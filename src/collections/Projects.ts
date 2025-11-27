@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
@@ -68,7 +68,7 @@ export const Projects: CollectionConfig = {
   hooks: {
     afterChange: [
       async ({ doc }) => {
-        revalidateTag("projects", "max");
+        revalidatePath("/");
         return doc;
       },
     ],

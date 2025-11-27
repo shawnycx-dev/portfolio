@@ -30,15 +30,10 @@ const nextConfig = {
         hostname: "localhost",
         port: "3000",
         pathname: "/api/media/file/**",
-      }
+      },
     ],
   },
-  serverExternalPackages: [
-    "jose",
-    "pino",
-    "pino-pretty",
-    "thread-stream",
-  ],
+  serverExternalPackages: ["jose", "pino", "pino-pretty", "thread-stream"],
 } satisfies NextConfig;
 
 export default withPayload(nextConfig);

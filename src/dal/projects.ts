@@ -1,10 +1,6 @@
 import { payload } from "@/lib/payload";
-import { cacheTag } from "next/cache";
 
 export const getProjects = async () => {
-  "use cache";
-  cacheTag("projects");
-  
   const results = await payload.find({
     collection: "projects",
     select: {
