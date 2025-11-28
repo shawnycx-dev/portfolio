@@ -1,4 +1,10 @@
-import { AboutSection, CompaniesSection, IntroSection, ProjectsSection } from "./_sections";
+import {
+  AboutSection,
+  BuiltWithSection,
+  CompaniesSection,
+  IntroSection,
+  ProjectsSection,
+} from "./_sections";
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -10,6 +16,7 @@ export default function Home() {
       <CompaniesSection />
       <ProjectsSection />
       <AboutSection />
+      <BuiltWithSection />
     </>
   );
 }
