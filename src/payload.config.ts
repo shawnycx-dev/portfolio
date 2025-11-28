@@ -18,6 +18,7 @@ import { Resume } from "./collections/Resume";
 import { Companies } from "./collections/Companies";
 import { Technologies } from "./collections/Technologies";
 import { Contact } from "@/collections/Contact";
+import sharp from "sharp";
 // import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 
 const filename = fileURLToPath( import.meta.url );
@@ -31,6 +32,7 @@ const cloudflare =
     : await getCloudflareContext( { async: true } );
 
 export default buildConfig( {
+  sharp,
   admin: {
     user: Users.slug,
     importMap: {
