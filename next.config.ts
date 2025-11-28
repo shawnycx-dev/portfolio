@@ -13,6 +13,8 @@ const nextConfig = {
     return webpackConfig;
   },
   images: {
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
     remotePatterns: [
       {
         protocol: "https",
