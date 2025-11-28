@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Kode_Mono, Montserrat } from "next/font/google";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -56,14 +54,12 @@ export default function RootLayout({
           montserrat.variable,
           kodeMono.variable,
           "font-kode-mono",
-          "max-w-screen-xl mx-auto py-10 px-8 min-h-screen flex flex-col bg-primary text-foreground"
+          "max-w-7xl mx-auto py-10 px-8 min-h-screen flex flex-col bg-primary text-foreground"
         )}
       >
         <Header />
-        <main className="py-20 flex-grow">{children}</main>
+        <main className="py-20 grow">{children}</main>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
