@@ -13,10 +13,9 @@ export default function cloudflareLoader({
   if (quality) {
     params.push(`quality=${quality}`);
   }
-
   if (process.env.NODE_ENV === "development") {
+    // Serve the original image when using `next dev`
     return `${src}?${params.join("&")}`;
   }
-
   return `/cdn-cgi/image/${params.join(",")}/${normalizeSrc(src)}`;
 }
