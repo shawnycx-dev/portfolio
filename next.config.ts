@@ -14,7 +14,7 @@ const nextConfig = {
   },
   images: {
     loader: "custom",
-    loaderFile: "./lib/image-loader.ts",
+    loaderFile: "./src/lib/image-loader.ts",
     remotePatterns: [
       {
         protocol: "https",
