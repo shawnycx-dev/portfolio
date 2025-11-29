@@ -1,5 +1,4 @@
 import type { CollectionConfig } from "payload";
-import sharp from "sharp";
 
 export const Media: CollectionConfig = {
   slug: "media",
@@ -13,12 +12,4 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: {
-    formatOptions: {
-      format: sharp.format.webp,
-      options: {
-        quality: 80,
-      },
-    },
-  },
 };
