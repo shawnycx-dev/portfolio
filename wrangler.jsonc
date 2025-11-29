@@ -40,6 +40,12 @@
       "database_id": "0235f0e8-c234-4df7-89ce-f8b067589de8",
       "remote": true,
     },
+    {
+      "binding": "D1_NEXT_TAG_CACHE",
+      "database_name": "shawnycx-portfolio-next-tag-cache",
+      "database_id": "46314d19-3bfe-455a-886b-812bd28906c4",
+      "remote": true,
+    },
   ],
   "routes": [
     {
