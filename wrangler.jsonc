@@ -11,6 +11,7 @@
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
     "global_fetch_strictly_public",
   ],
+  "images": { "binding": "IMAGES" },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
@@ -37,8 +38,8 @@
       "binding": "D1",
       "database_name": "shawnycx-portfolio",
       "database_id": "0235f0e8-c234-4df7-89ce-f8b067589de8",
-      "remote": true
-    }
+      "remote": true,
+    },
   ],
   "routes": [
     {
