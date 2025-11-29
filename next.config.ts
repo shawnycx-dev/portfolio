@@ -13,6 +13,8 @@ const nextConfig = {
     return webpackConfig;
   },
   images: {
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
